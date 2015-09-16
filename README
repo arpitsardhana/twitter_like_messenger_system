@@ -1,0 +1,77 @@
+# Copyright (c) 2015 All Right Reserved,Arpit Singh(arpitsardhana2008@gmail.com)
+# Messenger_system_arpitsardhana is free program: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Messenger_system_arpitsardhana is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# for terms and conditions see, see <http://www.gnu.org/licenses/>.
+
+
+
+Created By     	     :    Arpit Singh
+Date       	     :    12 September 2015
+File Type  	     :    README
+Summary    	     :    Messenger system is implemennted in which users can follow each other and post messages. 
+	       		  On their respective timeline,can see messages posted by people whom they follow
+                          or reply to messages originated from following users.
+
+Compiler Instruction :    Messenger_system_arpitsardhana.py can be compiled directly using command:
+		          python Messenger_system_arpitsardhana.py
+		          It will run on python version 2.7+ on machine with linux kernel
+
+
+
+High Level Design    	(1) Users can be created 
+		       	(2) Messages can be create
+		 	(3) Users can follow each other and unfolow each other
+			(4) All users can post message
+			(5) Every user has timeline
+			(6) A user timeline consist of message sent by user he/she is following
+			    and reply of messages whose origin user is followed
+			(7) Follower Map can be seen
+			(8) From Set user, no of follow branches required to given user
+			    can be determined by function bieber
+			(9) For testing purpose, random users,messages and followings can be created
+
+
+Design Decisions     :  (1) User and Message list are maintained as Hash table
+			    Thus, time complexity to retrive user/message details is O(1)
+			(2) To determine bieber number, Breadth First Algorithm is utilized.
+			     Worst case Time complexity of bieber function is O(|V| + |E|) where 
+			     V denotes the no of users and E denotes the follower links
+			(3) Timeline is sorted based on message id since messages are created sequenetially
+			    linear in time for simplicity.
+			(4) Test functions is provided as main_1
+			(5) On run of given program, user can select suitable options to test program
+			(6) Maximum corner cases are attempted,however program is not fully robust and may 
+			    crash on undesirable inputs
+			(7) Program does not restrict number of users,messengers and followers link
+			(8) Limits are based on system limits and python execution limits.
+			(9) Tested with 100000 users and 100000 messages.
+			
+
+Code Layout & Design : 	(1) Class user consist of : id,following list,follower list,time line
+			(2) Class messages consist of : id,time stamp,source,message string,reply id
+			(3) Additional graph is maintained to keep track of per user following list
+
+API Supported        :  (1)create_user() 	       :To create new user
+			(2)create_users(N) 	       :To create N users
+			(3)create_message(): 	       :To create message
+			(4)create_messages(N)          :To create N messages
+			(5)see_all_userid()            :To print all userid
+			(6)see_all_msgid       	       :To print all message id
+			(7)follow(x,y)                 :X follows user Y
+			(8)unfollow(X,Y)               :X unfollows user Y
+			(9)post(X,Y)           	       :Message X is posted by User Y
+			(10)timeline(X,K)              :See top K messages by User X 
+			(11)set_bieber(X)              :Set X is beiber node for calculating minimum distance
+			(12)bieber(X)                  :Calculate beiber number from X to beiber node
+			(13)create_random_following(N) :Create N unique randomized following
+			(14)see_followers_map()        :Print follower map
+
+
+
